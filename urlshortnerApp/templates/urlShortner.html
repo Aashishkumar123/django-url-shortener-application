@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Url Shortner</title>
+
+	<!-- bootstrap css cdn link -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<!-- bootstrap css cdn link -->
+
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/style.css' %}">
+</head>
+
+<body>
+
+<div class="container text-center mt-5">
+	
+<h1 style="font-family: 'Poppins', sans-serif;" class="text-white">URL Shortner Application</h1>
+
+
+<div class="container shadow-lg main mt-5 p-5">
+	<h3>Paste the URL to be shortened <img src="{% static 'images/link.svg'%}"></h3>
+
+	<form method="POST" class="mt-5 d-flex">{% csrf_token %}
+		<input type="url" name="url" class="shadow-lg" placeholder="Enter the link here" required> 
+		<button class="shadow-lg px-5" name="short-url">Shorten URL</button>
+
+	</form>
+</div>
+</div>
+
+
+{% if short_url %}
+<div class="container mt-5 result">
+
+<h3>Your shortened URL <img src="{% static 'images/link.svg'%}"></h3>
+	<small class="text-white">Copy the shortened link and share it in messages, texts, posts, websites and other locations.</small>
+<div class="d-flex mt-3">
+<input type="url" id="short_url" class="shadow-lg" value={{short_url}}> <button id="copy" class="shadow-lg px-5" name="short-url">Copy URL</button> <small id="copied" class="px-5"></small>
+</div> 
+<br>
+<span><b>Long URL : </b></span> <a href="{{long_url}}">{{long_url}}</a>
+
+</div>
+
+{%endif%}
+
+
+
+<script type="text/javascript" src="{% static 'javascript/script.js' %}"></script>
+
+</body>
+</html>
